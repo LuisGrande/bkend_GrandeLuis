@@ -1,29 +1,35 @@
 class ProductManager {
-  
-    constructor() {
+  constructor() {
     this.products = [];
-    
   }
-  static id = 000
+  static id = 000;
 
-  addProduct(title,description,price,thumbnail,code,stock) {
-    ProductManager.id ++
+  addProduct(title, description, price, thumbnail, code, stock) {
+    ProductManager.id++;
     this.products.push({
-        title,
-        description,
-        price,
-        thumbnail,
-        code,
-        stock,
-        id:ProductManager.id
-    })
+      title,
+      description,
+      price,
+      thumbnail,
+      code,
+      stock,
+      id: ProductManager.id,
+    });
   }
 
-  getProduct(){
-    return this.products
+  getProduct() {
+    return this.products;
+  }
+
+  getProductById(id) {
+    if (this.products.find((prod) => prod.id === id)) {
+        console.log('existe')
+    }
+    else{
+        console.log('no encontrado')
+    }
+
   }
 }
 
-
-
-module.exports = ProductManager
+module.exports = ProductManager;
