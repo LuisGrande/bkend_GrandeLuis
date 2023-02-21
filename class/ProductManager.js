@@ -1,38 +1,29 @@
 class ProductManager {
-  id;
-  title = "";
-  description = "";
-  price;
-  thumbnail = "";
-  code;
-  stock;
-
-  constructor() {
+  
+    constructor() {
     this.products = [];
-    this.id = 0;
+    
+  }
+  static id = 000
+
+  addProduct(title,description,price,thumbnail,code,stock) {
+    ProductManager.id ++
+    this.products.push({
+        title,
+        description,
+        price,
+        thumbnail,
+        code,
+        stock,
+        id:ProductManager.id
+    })
   }
 
-  addProduct(product) {
-    this.products.push(product);
-    console.log(this.products);
+  getProduct(){
+    return this.products
   }
-
-  getProducts() {
-    return this.products;
-  }
-
-  getProductById(id) {
-    const SearchProduct = this.products.find((prod) => {
-      prod.code === id;
-    });
-
-        if (SearchProduct ===true){
-            return prod
-        }
-        else{
-            return 'no se encontro el producto'
-        }
-    }
 }
+
+
 
 module.exports = ProductManager
