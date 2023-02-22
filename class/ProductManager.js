@@ -22,11 +22,14 @@ class ProductManager {
   }
 
   getProductById(id) {
-    if (this.products.find((prod) => prod.id === id)) {
-        console.log('existe')
+    const productoBuscado = this.products.find((prod) => prod.id === id)
+    if (productoBuscado) {
+        
+        console.log(`el producto se encontro y es:`)
+        console.log( productoBuscado)
     }
     else{
-        console.log('no encontrado')
+        console.log('no se encontro el producto')
     }
 
   }

@@ -6,4 +6,4 @@ const product = new ProductManager
 product.addProduct('pantalon','levis desgastado',13000,'direccion_pantalon','01A',24)
 product.addProduct('remera','indumentaria de verano',3000,'direccion','01B',30)
 console.log(product.getProduct())
-product.getProductById(2)
+product.getProductById(1)
