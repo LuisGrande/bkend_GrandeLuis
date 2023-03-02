@@ -1,0 +1,1 @@
+[{"title":"pantalon","description":"levis desgastado","price":13000,"thumbnail":"direccion_pantalon","code":"01A","stock":24,"id":1},{"title":"remera","description":"indumentaria de verano","price":3000,"thumbnail":"direccion","code":"01B","stock":30,"id":1}]
