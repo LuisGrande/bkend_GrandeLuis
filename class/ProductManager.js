@@ -9,41 +9,52 @@ class ProductManager {
 
   static id = 000;
 
-  loadProducts(){
+  loadProducts = async()=>{
     try {
-      const data = fs.readFileSync(this.path,'utf-8')
+      const data = await fs.readFileSync(this.path,'utf-8')
       this.products = JSON.parse(data)
     } catch (err) {
       console.log(`error: ${err}`)
     }
   }
 
-  saveProducts() {
+// saveProducts = () => {
+//   return new promises((res,rej)=>{
+    
+//   })
+// }
+
+  saveProducts = async () => {
     try {
-      const data = JSON.stringify(this.products);
+      const data = await JSON.stringify(this.products);
       fs.writeFileSync(this.path, data);
     } catch (err) {
       console.error(err);
     }
   }
 
-  addProduct(title, description, price, thumbnail, code, stock) {
-     const productoBuscado = this.products.find((prod) => prod.code === code);
+  addProduct = async (title, description, price, thumbnail, code, stock) => {
+    try{
+      const productoBuscado = this.products.find((prod) => prod.code === code);
 
-    if (!productoBuscado) {
-      ProductManager.id++;
-      
-      this.products.push({
-        title,
-        description,
-        price,
-        thumbnail,
-        code,
-        stock,
-        id: ProductManager.id,
-      });
-    } else {
-      console.log(`el codigo ${code} ya existe`);
+      if (!productoBuscado) {
+        ProductManager.id++;
+        
+        this.products.push({
+          title,
+          description,
+          price,
+          thumbnail,
+          code,
+          stock,
+          id: ProductManager.id,
+        });
+      } else {
+        console.log(`el codigo ${code} ya existe`);
+      }
+    }
+    catch(error){
+      console.log(error)
     }
   }
 
@@ -51,13 +62,20 @@ class ProductManager {
     return this.products;
   }
 
-  getProductById(id) {
+  getProductById = async(id) => {
     const productoBuscado = this.products.find((prod) => prod.id === id);
-    if (productoBuscado) {
-      console.log(`el producto se encontro y es:`);
-      console.log(productoBuscado);
-    } else {
-      console.log("no se encontro el producto");
+    try{
+      if (productoBuscado) {
+        console.log(`el producto se encontro y es:`);
+        console.log(productoBuscado);
+      } else {
+        console.log("no se encontro el producto");
+      }
+
+    }
+    catch(err)
+    {
+      console.log(err)
     }
   }
   
@@ -67,7 +85,7 @@ class ProductManager {
       const updatedProduct = {
         ...this.products[index],
         ...updatedFields,
-        id // aseguramos que el ID del producto no cambie
+        id 
       };
       this.products[index] = updatedProduct;
       this.saveProducts();
